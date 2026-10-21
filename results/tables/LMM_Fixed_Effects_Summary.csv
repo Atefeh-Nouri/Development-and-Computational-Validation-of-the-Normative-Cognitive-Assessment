@@ -1,0 +1,7 @@
+Cognitive_Domain,Age_Beta,Age_P_Value,Sex_Male_Beta,Sex_P_Value
+corsi_span,0.275,< 0.001,-0.033,0.1762
+srt_mean_ms,-12.936,< 0.001,0.246,0.7818
+crt_mean_ms,-19.631,< 0.001,0.95,0.4577
+ssrt_ms,-8.088,< 0.001,0.693,0.2851
+sdt_dprime,0.113,< 0.001,0.003,0.797
+processing_speed,2.782,< 0.001,0.113,0.7399
