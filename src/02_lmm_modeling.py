@@ -1,86 +1,83 @@
-﻿import os
-import warnings
-import pandas as pd
-import numpy as np
-import statsmodels.formula.api as smf
+"""Build Table 2, Table 3, and developmental trajectory figure."""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import ncad_core as C
+
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-warnings.filterwarnings("ignore")
 
-ROOT_DIR = r"D:\Machine learning\Atefeh\NCAD_Conference\Development-and-Computational-Validation-of-the-Normative-Cognitive-Assessment"
-DATA_PATH = os.path.join(ROOT_DIR, "dataset", "NCAD_Iranian_Dataset.xlsx")
-TABLES_DIR = os.path.join(ROOT_DIR, "results", "tables")
-FIG_DIR = os.path.join(ROOT_DIR, "results", "figures")
-os.makedirs(TABLES_DIR, exist_ok=True)
-os.makedirs(FIG_DIR, exist_ok=True)
+def main() -> None:
+    df = C.load()
+    outcomes = C.detect_outcomes(df)
+    gcol = C.cluster_column(df) or "school_type"
 
-df = pd.read_excel(DATA_PATH, sheet_name="Simulated Data", skiprows=1)
+    t2, _ = C.table2_grid(df, outcomes)
+    t3 = C.build_table3(df, outcomes, gcol, B=0)
 
-metrics = [
-    "corsi_span",
-    "srt_mean_ms",
-    "crt_mean_ms",
-    "ssrt_ms",
-    "sdt_dprime",
-    "processing_speed"
-]
+    t2.to_csv(C.tables_dir() / "table2_truth.csv", index=False)
+    t2.to_csv(C.tables_dir() / "Table2_Descriptive_Psychometrics.csv", index=False)
 
-# 1. Generate Table 2: Descriptive Statistics
-means = df.groupby("age")[metrics].mean().round(2)
-sds = df.groupby("age")[metrics].std().round(2)
+    t3.to_csv(C.tables_dir() / "table3_truth.csv", index=False)
+    t3.to_csv(C.tables_dir() / "LMM_Fixed_Effects_Summary.csv", index=False)
 
-table2 = pd.DataFrame()
-for col in metrics:
-    table2[f"{col}_Mean_SD"] = means[col].astype(str) + " ± " + sds[col].astype(str)
-
-table2.reset_index(inplace=True)
-table2_path = os.path.join(TABLES_DIR, "Table2_Descriptive_Psychometrics.csv")
-table2.to_csv(table2_path, index=False)
-print(f"[SUCCESS] Table 2 saved to: {table2_path}")
-
-# 2. Fit Linear Mixed-Effects Models (LMM)
-print("\nFitting Linear Mixed-Effects Models (Outcome ~ Age + Sex + (1|school_type))...")
-lmm_results = []
-for m in metrics:
-    model = smf.mixedlm(f"{m} ~ age + C(sex)", data=df, groups=df["school_type"])
-    res = model.fit()
-    lmm_results.append({
-        "Cognitive_Domain": m,
-        "Age_Beta": round(res.params["age"], 3),
-        "Age_P_Value": "< 0.001" if res.pvalues["age"] < 0.001 else round(res.pvalues["age"], 4),
-        "Sex_Male_Beta": round(res.params["C(sex)[T.male]"], 3),
-        "Sex_P_Value": round(res.pvalues["C(sex)[T.male]"], 4)
-    })
-
-lmm_df = pd.DataFrame(lmm_results)
-lmm_path = os.path.join(TABLES_DIR, "LMM_Fixed_Effects_Summary.csv")
-lmm_df.to_csv(lmm_path, index=False)
-print(f"[SUCCESS] LMM fixed effects summary saved to: {lmm_path}")
-print(lmm_df)
-
-# 3. Plot Developmental Trajectories
-sns.set_theme(style="whitegrid")
-fig, axes = plt.subplots(2, 3, figsize=(16, 10))
-axes = axes.flatten()
-
-titles = [
-    "Corsi Span Capacity", "Simple Reaction Time (ms)", "Choice Reaction Time (ms)",
-    "Stop-Signal Reaction Time (ms)", "Signal Detection d' (Sensitivity)", "Processing Speed Score"
-]
-
-for i, m in enumerate(metrics):
-    sns.lineplot(
-        data=df, x="age", y=m, hue="sex", marker="o", ax=axes[i],
-        palette={"female": "#2b5c8f", "male": "#d95f02"}
+    print(f"[02] grouping='{gcol}' levels={df[gcol].nunique()}")
+    print(
+        t3[
+            [
+                "Cognitive_Domain",
+                "Intercept_Beta0",
+                "Age_Beta",
+                "Sex_Beta",
+                "ICC",
+                "R2_Conditional",
+            ]
+        ].to_string(index=False)
     )
-    axes[i].set_title(titles[i], fontsize=12, fontweight="bold")
-    axes[i].set_xlabel("Age (Years)")
-    axes[i].set_ylabel("Score / Latency")
 
-plt.tight_layout()
-fig_path = os.path.join(FIG_DIR, "Developmental_Trajectories.png")
-plt.savefig(fig_path, dpi=300)
-print(f"[SUCCESS] High-resolution trajectory plot saved to: {fig_path}")
+    # Figure: sex-stratified trajectories for the six core outcomes.
+    core = C.CORE6
+    n = len(core)
+    nrow = 2
+    ncol = 3
+
+    sns.set_theme(style="whitegrid")
+    fig, axes = plt.subplots(nrow, ncol, figsize=(15, 8))
+
+    for i, lbl in enumerate(core):
+        ax = axes[i // ncol][i % ncol]
+        col = outcomes[lbl]
+
+        sns.lineplot(
+            data=df,
+            x="age_band",
+            y=col,
+            hue="sex",
+            marker="o",
+            ax=ax,
+            palette={"female": "#2b5c8f", "male": "#d95f02"},
+        )
+
+        ax.set_title(lbl.replace("_", " ").title(), fontweight="bold")
+        ax.set_xlabel("Age (Years)")
+        ax.set_ylabel("Score / Latency")
+
+    for j in range(n, nrow * ncol):
+        axes[j // ncol][j % ncol].axis("off")
+
+    plt.tight_layout()
+    fp = C.figs_dir() / "Developmental_Trajectories.png"
+    plt.savefig(fp, dpi=300)
+    print(f"[02] figure -> {fp}")
+
+
+if __name__ == "__main__":
+    main()

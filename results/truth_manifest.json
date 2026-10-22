@@ -1,0 +1,475 @@
+{
+  "engine": "R/lme4/lmerTest + Python/statsmodels cross-check",
+  "p_method": "satterthwaite_R_lmerTest",
+  "ci_method": "nonparametric_bootstrap_R_bootMer",
+  "satterthwaite_available": true,
+  "grouping_column": "school_type",
+  "grouping_levels": 2,
+  "cluster_supported": false,
+  "cluster_column": "school_type",
+  "centered_age_at": 15.0,
+  "sex_reference": "female",
+  "sex_coding": "0=Female,1=Male",
+  "interaction_included": false,
+  "modeled_outcomes": [
+    "corsi_backward_span",
+    "corsi_cumulative_errors",
+    "corsi_forward_span",
+    "crt_mean_latency",
+    "crt_response_time_cv",
+    "processing_speed_index",
+    "rvp_decision_criterion_c",
+    "rvp_sensitivity_dprime",
+    "srt_mean_latency",
+    "srt_response_time_cv",
+    "stop_signal_rt"
+  ],
+  "data_outcome_columns": {
+    "corsi_forward_span": "corsi_forward_span",
+    "corsi_backward_span": "corsi_backward_span",
+    "corsi_cumulative_errors": "corsi_cumulative_errors",
+    "srt_mean_latency": "srt_mean_latency",
+    "srt_response_time_cv": "srt_response_time_cv",
+    "crt_mean_latency": "crt_mean_latency",
+    "crt_response_time_cv": "crt_response_time_cv",
+    "stop_signal_rt": "stop_signal_rt",
+    "rvp_sensitivity_dprime": "rvp_sensitivity_dprime",
+    "rvp_decision_criterion_c": "rvp_decision_criterion_c",
+    "processing_speed_index": "processing_speed_index"
+  },
+  "table1_per_age": {
+    "12": 286,
+    "13": 286,
+    "14": 286,
+    "15": 286,
+    "16": 286,
+    "17": 285,
+    "18": 285
+  },
+  "table2_raw": {
+    "corsi_forward_span": [
+      [
+        4.18,
+        4.359993006993007,
+        4.570010489510489,
+        4.869986013986014,
+        5.120003496503497,
+        5.520021052631579,
+        5.7899859649122805
+      ],
+      [
+        0.8297683253078603,
+        0.892976583622602,
+        0.8492453388177171,
+        0.8701037162296732,
+        0.8996020816176951,
+        0.910109217779723,
+        0.7503358636324317
+      ]
+    ],
+    "corsi_backward_span": [
+      [
+        3.499993006993007,
+        3.699982517482517,
+        3.9000000000000004,
+        4.100020979020979,
+        4.300003496503496,
+        4.500010526315789,
+        4.69999298245614
+      ],
+      [
+        0.539661511801006,
+        0.5345156617684327,
+        0.5622358186646185,
+        0.5004230065886744,
+        0.5340040508306291,
+        0.540790673648971,
+        0.5336037327573268
+      ]
+    ],
+    "corsi_cumulative_errors": [
+      [
+        9.49998951048951,
+        8.799993006993006,
+        8.100003496503497,
+        7.400027972027972,
+        6.699989510489511,
+        5.99999298245614,
+        5.300017543859649
+      ],
+      [
+        1.8994212128301695,
+        1.809801603923746,
+        1.9676533436277552,
+        1.9878991888875381,
+        1.7723493724813963,
+        1.8341475031553112,
+        1.8421372508853895
+      ]
+    ],
+    "srt_mean_latency": [
+      [
+        388.360006993007,
+        375.8,
+        366.03001048951046,
+        352.0900104895105,
+        337.98,
+        324.0300035087719,
+        311.4899894736842
+      ],
+      [
+        37.065016573866586,
+        39.13289221730523,
+        38.150288385057415,
+        40.07051486343722,
+        37.749567552489935,
+        36.492995470817206,
+        38.24771165082346
+      ]
+    ],
+    "srt_response_time_cv": [
+      [
+        0.285013986013986,
+        0.262,
+        0.24099650349650348,
+        0.2219895104895105,
+        0.20598251748251747,
+        0.1919859649122807,
+        0.18202105263157894
+      ],
+      [
+        0.04858011809249237,
+        0.0468397042554374,
+        0.04630467357350779,
+        0.05042753941735968,
+        0.048442728441977764,
+        0.0454176992807486,
+        0.048799167105143024
+      ]
+    ],
+    "crt_mean_latency": [
+      [
+        687.6400174825176,
+        670.4800104895105,
+        651.439993006993,
+        629.9399685314686,
+        612.5499755244756,
+        591.2600245614035,
+        570.1899999999999
+      ],
+      [
+        49.118630492113134,
+        49.41241272715985,
+        49.969345428515865,
+        47.182866934183124,
+        51.45990790838776,
+        45.73013524351574,
+        50.79080534733612
+      ]
+    ],
+    "crt_response_time_cv": [
+      [
+        0.2980034965034965,
+        0.27595804195804197,
+        0.25401048951048955,
+        0.23500699300699301,
+        0.21804895104895106,
+        0.20398245614035088,
+        0.1940421052631579
+      ],
+      [
+        0.047180615871853085,
+        0.04839165857160214,
+        0.0470320894012136,
+        0.04874099056700205,
+        0.04573644232765135,
+        0.04774178316886912,
+        0.0488350015443222
+      ]
+    ],
+    "stop_signal_rt": [
+      [
+        298.8100104895105,
+        292.9900244755245,
+        283.65003846153843,
+        275.839993006993,
+        268.33001048951047,
+        258.3999929824562,
+        251.50999649122807
+      ],
+      [
+        20.032120666829446,
+        21.130393694726475,
+        22.39334901906689,
+        20.08960208245872,
+        19.499104165744534,
+        21.472483003555467,
+        21.3666970226668
+      ]
+    ],
+    "rvp_sensitivity_dprime": [
+      [
+        1.669958041958042,
+        1.7500034965034965,
+        1.8499790209790212,
+        1.9600139860139858,
+        2.1100000000000003,
+        2.1900105263157896,
+        2.3400140350877194
+      ],
+      [
+        0.3318626406639249,
+        0.32469259414018975,
+        0.31267517966635755,
+        0.3244788639295917,
+        0.3285383899701991,
+        0.33789526133890274,
+        0.34968740539582416
+      ]
+    ],
+    "rvp_decision_criterion_c": [
+      [
+        0.4120034965034965,
+        0.35804195804195804,
+        0.30501048951048954,
+        0.252,
+        0.203986013986014,
+        0.16100701754385965,
+        0.1250280701754386
+      ],
+      [
+        0.12589718718906132,
+        0.13736808659875022,
+        0.1279193957905081,
+        0.13193916726904537,
+        0.13115920343540635,
+        0.12811911251969474,
+        0.1379132429811312
+      ]
+    ],
+    "processing_speed_index": [
+      [
+        77.78,
+        80.97996503496503,
+        83.12001748251748,
+        86.70999650349651,
+        89.03002097902097,
+        92.03997543859649,
+        94.40001754385965
+      ],
+      [
+        7.097776611592546,
+        7.436127908559494,
+        7.17234367991741,
+        7.482540012729168,
+        7.26555294858424,
+        7.530912676585249,
+        7.116332270354263
+      ]
+    ]
+  },
+  "table3": [
+    {
+      "Cognitive_Domain": "corsi_forward_span",
+      "Intercept_Beta0": 4.906,
+      "Age_Beta": 0.276,
+      "Age_P_Value": 3.5480528910650945e-184,
+      "Sex_Beta": -0.032,
+      "Sex_P_Value": 0.39552034257025837,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 0.026,
+      "Sigma2_Resid": 0.7274,
+      "ICC": 0.0345,
+      "R2_Marginal": 0.2882,
+      "R2_Conditional": 0.3128,
+      "CI_Low": 0.257,
+      "CI_High": 0.295
+    },
+    {
+      "Cognitive_Domain": "corsi_backward_span",
+      "Intercept_Beta0": 4.1,
+      "Age_Beta": 0.2,
+      "Age_P_Value": 3.27186883313035e-245,
+      "Sex_Beta": 0.0,
+      "Sex_P_Value": 0.9998990999505638,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 0.0,
+      "Sigma2_Resid": 0.286,
+      "ICC": 0.0,
+      "R2_Marginal": 0.3586,
+      "R2_Conditional": 0.3586,
+      "CI_Low": 0.188,
+      "CI_High": 0.212
+    },
+    {
+      "Cognitive_Domain": "corsi_cumulative_errors",
+      "Intercept_Beta0": 7.35,
+      "Age_Beta": -0.698,
+      "Age_P_Value": 1.7929684197075424e-246,
+      "Sex_Beta": 0.001,
+      "Sex_P_Value": 0.9916782927406534,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 0.0999,
+      "Sigma2_Resid": 3.4607,
+      "ICC": 0.028,
+      "R2_Marginal": 0.3534,
+      "R2_Conditional": 0.3716,
+      "CI_Low": -0.739,
+      "CI_High": -0.657
+    },
+    {
+      "Cognitive_Domain": "srt_mean_latency",
+      "Intercept_Beta0": 352.339,
+      "Age_Beta": -13.008,
+      "Age_P_Value": 2.3832128346189065e-211,
+      "Sex_Beta": 0.218,
+      "Sex_P_Value": 0.8967571300492457,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 103.5211,
+      "Sigma2_Resid": 1404.7654,
+      "ICC": 0.0686,
+      "R2_Marginal": 0.3096,
+      "R2_Conditional": 0.357,
+      "CI_Low": -13.83,
+      "CI_High": -12.187
+    },
+    {
+      "Cognitive_Domain": "srt_response_time_cv",
+      "Intercept_Beta0": 0.229,
+      "Age_Beta": -0.017,
+      "Age_P_Value": 7.940716972201311e-238,
+      "Sex_Beta": -0.0,
+      "Sex_P_Value": 0.9869158425790553,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 0.0002,
+      "Sigma2_Resid": 0.0022,
+      "ICC": 0.0695,
+      "R2_Marginal": 0.3355,
+      "R2_Conditional": 0.3816,
+      "CI_Low": -0.018,
+      "CI_High": -0.016
+    },
+    {
+      "Cognitive_Domain": "crt_mean_latency",
+      "Intercept_Beta0": 631.292,
+      "Age_Beta": -19.687,
+      "Age_P_Value": 6.945426100995509e-285,
+      "Sex_Beta": 0.923,
+      "Sex_P_Value": 0.6723173641161738,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 62.2865,
+      "Sigma2_Resid": 2380.6976,
+      "ICC": 0.0255,
+      "R2_Marginal": 0.3881,
+      "R2_Conditional": 0.4037,
+      "CI_Low": -20.757,
+      "CI_High": -18.617
+    },
+    {
+      "Cognitive_Domain": "crt_response_time_cv",
+      "Intercept_Beta0": 0.24,
+      "Age_Beta": -0.018,
+      "Age_P_Value": 1.4606364300435589e-236,
+      "Sex_Beta": -0.0,
+      "Sex_P_Value": 0.9975160636524206,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 0.0,
+      "Sigma2_Resid": 0.0023,
+      "ICC": 0.0,
+      "R2_Marginal": 0.3504,
+      "R2_Conditional": 0.3504,
+      "CI_Low": -0.019,
+      "CI_High": -0.017
+    },
+    {
+      "Cognitive_Domain": "stop_signal_rt",
+      "Intercept_Beta0": 275.467,
+      "Age_Beta": -8.093,
+      "Age_P_Value": 1.0595011150391734e-263,
+      "Sex_Beta": 0.69,
+      "Sex_P_Value": 0.45952293281234946,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 1.2891,
+      "Sigma2_Resid": 434.8062,
+      "ICC": 0.003,
+      "R2_Marginal": 0.3752,
+      "R2_Conditional": 0.3771,
+      "CI_Low": -8.55,
+      "CI_High": -7.635
+    },
+    {
+      "Cognitive_Domain": "rvp_sensitivity_dprime",
+      "Intercept_Beta0": 1.983,
+      "Age_Beta": 0.112,
+      "Age_P_Value": 1.8836452126353712e-203,
+      "Sex_Beta": 0.003,
+      "Sex_P_Value": 0.8431436560711665,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 0.0004,
+      "Sigma2_Resid": 0.1089,
+      "ICC": 0.0038,
+      "R2_Marginal": 0.3158,
+      "R2_Conditional": 0.3184,
+      "CI_Low": 0.105,
+      "CI_High": 0.12
+    },
+    {
+      "Cognitive_Domain": "rvp_decision_criterion_c",
+      "Intercept_Beta0": 0.26,
+      "Age_Beta": -0.048,
+      "Age_P_Value": 1.0219692318060941e-237,
+      "Sex_Beta": 0.0,
+      "Sex_P_Value": 0.9966096510096549,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 0.0,
+      "Sigma2_Resid": 0.0173,
+      "ICC": 0.0,
+      "R2_Marginal": 0.3514,
+      "R2_Conditional": 0.3514,
+      "CI_Low": -0.051,
+      "CI_High": -0.046
+    },
+    {
+      "Cognitive_Domain": "processing_speed_index",
+      "Intercept_Beta0": 85.924,
+      "Age_Beta": 2.796,
+      "Age_P_Value": 5.79939814333886e-266,
+      "Sex_Beta": 0.118,
+      "Sex_P_Value": 0.7126574229280054,
+      "AgeXSex_Beta": NaN,
+      "AgeXSex_P_Value": NaN,
+      "Sigma2_School": 3.8425,
+      "Sigma2_Resid": 51.4624,
+      "ICC": 0.0695,
+      "R2_Marginal": 0.3611,
+      "R2_Conditional": 0.4055,
+      "CI_Low": 2.639,
+      "CI_High": 2.953
+    }
+  ],
+  "interaction_any_significant": false,
+  "bootstrap_iterations": 1000,
+  "r_engine": {
+    "script": "src/analysis_pipeline.R",
+    "packages": [
+      "readxl",
+      "lme4",
+      "lmerTest",
+      "dplyr",
+      "tibble"
+    ],
+    "model": "Outcome ~ age_c + sex_male + (1|school_type)",
+    "bootstrap_iterations": 1000,
+    "max_abs_age_beta_parity_vs_python": 0.000499
+  }
+}
