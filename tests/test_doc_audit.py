@@ -6,6 +6,10 @@ import sys
 from pathlib import Path
 
 import pytest
+from pathlib import Path as _P
+def _r_outputs_available():
+    return bool(list(_P('results/tables').glob('*_R_*.csv')))
+requires_r = pytest.mark.skipif(not _r_outputs_available(), reason='R-side outputs not present (R not installed on this host)')
 
 try:
     import numpy as np

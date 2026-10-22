@@ -1,0 +1,6 @@
+R R version 4.6.1 (2026-06-24 ucrt)
+readxl == 1.6.0
+lme4 == 2.0-6
+lmerTest == 3.2-1
+dplyr == 1.2.1
+tibble == 3.3.1

@@ -1,6 +1,79 @@
-﻿venv/
+# ---- Python ----
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# ---- Jupyter / editors / OS ----
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# ---- logs / temp / backups ----
 *.log
+*.tmp
+*.bak
+*.bak2
+*.bak3
+*.orig
+*.rej
+backup_*/
+_backups/
+scratch/
+tmp/
+temp/
+
+# ---- local helper scripts NOT part of the published pipeline ----
+run_ncad.sh
+tools/*
+!tools/diagnose_repo.py
+
+# ---- internal author notes (NOT reproducible results) ----
+results/doc_punchlist.md
+results/required_word_edits.md
+results/manuscript_edit_checklist.md
+results/manuscript_number_sheet.txt
+
+# ---- stray legacy module ----
+src/paper_targets.py
+
+# ---- dataset scratch backups ----
+dataset/_backup_*.xlsx
+
+# ---- R ----
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# ---- Excel lock files ----
+~$*.xlsx
+*.xlsx#
+
+# ---- pytest / coverage ----
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- .bakN.py (the *.bak glob missed these) ---
+*.bak*.py
+_*.bak*.py
+
+# --- paste-corruption redirect artifacts ---
+PY
+else*

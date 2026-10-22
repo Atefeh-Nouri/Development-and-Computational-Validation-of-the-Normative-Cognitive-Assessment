@@ -1,0 +1,17 @@
+name: ncad-audit
+on: [push, pull_request]
+jobs:
+  audit:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -r requirements.txt
+      - run: python src/generate_synthetic_data.py
+      - run: python src/write_codebook_sheet.py
+      - run: python src/00_regenerate_truth.py
+      - run: python src/02_lmm_modeling.py
+      - run: python src/03_render_infographic.py
+      - run: python -m pytest tests/ -m code_audit -q
+      - run: python -m pytest tests/ -m doc_audit -v -rs
